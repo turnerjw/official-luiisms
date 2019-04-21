@@ -28,20 +28,10 @@ const User = styled.div`
     }
 `;
 
-const getUser = () => {
-    const user = netlifyIdentity.currentUser();
-    console.log(user);
-    if (user) {
-        return user.user_metadata.full_name;
-    } else {
-        return "Login or Sign up";
-    }
-};
-
-function UserMenu() {
+function UserMenu({ user }) {
     return (
         <User onClick={() => netlifyIdentity.open()}>
-            <p>{getUser()}</p>
+            <p>{user || "Login or Sign up"}</p>
             <div>
                 <FontAwesomeIcon icon={faUserCircle} size="2x" />
             </div>

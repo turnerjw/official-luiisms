@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import netlifyIdentity from "netlify-identity-widget";
 
 import RandomLuiism from "./RandomLuiism";
 import SubmitLuiism from "./SubmitLuiism";
@@ -29,11 +30,19 @@ const Layout = styled.div`
 `;
 
 function App() {
+    const [userName, setUserName] = useState(null);
+
+    netlifyIdentity.on("login", () => {
+        const user = netlifyIdentity.currentUser();
+        setUserName(user.user_metadata.full_name);
+    });
+    netlifyIdentity.on("logout", () => setUserName(null));
+
     return (
         <Router>
             <Layout>
                 <Header>Luiisms</Header>
-                <UserMenu />
+                <UserMenu user={userName} />
                 <Sidebar />
                 <ContentArea>
                     <Route exact path="/" component={RandomLuiism} />
