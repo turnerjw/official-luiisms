@@ -8,6 +8,7 @@ function RandomLuiism() {
             luiism="Misconskewed"
             usage="Noooooo! I've been misconskewed!"
             likes="15"
+            submittedBy="Juggy"
         />
     );
 }

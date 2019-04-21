@@ -25,12 +25,14 @@ const Usage = styled.div`
 `;
 
 const ActionArea = styled.div`
+    color: grey;
     margin-top: 15px;
     align-self: flex-end;
     border-top: 5px solid grey;
     display: flex;
     flex-direction: column;
-    width: 34%;
+    width: 40%;
+    min-width: 150px;
     justify-content: flex-end;
     text-align: right;
 
@@ -38,6 +40,11 @@ const ActionArea = styled.div`
     p {
         margin: 0;
         margin-top: 10px;
+    }
+
+    button,
+    label {
+        display: none;
     }
 `;
 
@@ -48,7 +55,7 @@ function Luiism({ luiism, usage, submittedBy, likes }) {
             <Usage>{usage}</Usage>
             <Quote>- Lui</Quote>
             <ActionArea>
-                <p>Submitted By: {submittedBy}</p>
+                <p>Submitted by {submittedBy}</p>
                 <label htmlFor="">
                     {likes}
                     <button>+1</button>
