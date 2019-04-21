@@ -7,6 +7,7 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import RandomLuiism from "./RandomLuiism";
 import SubmitLuiism from "./SubmitLuiism";
 import Sidebar from "./Sidebar";
+import UserMenu from "./UserMenu";
 
 const Header = styled.div`
     font-size: 60px;
@@ -14,12 +15,6 @@ const Header = styled.div`
     font-weight: bold;
     position: absolute;
     user-select: none;
-`;
-
-const User = styled.div`
-    position: absolute;
-    right: 25px;
-    top: 25px;
 `;
 
 const ContentArea = styled.div`
@@ -38,9 +33,7 @@ function App() {
         <Router>
             <Layout>
                 <Header>Luiisms</Header>
-                <User>
-                    <FontAwesomeIcon icon={faUserCircle} size="2x" />
-                </User>
+                <UserMenu />
                 <Sidebar />
                 <ContentArea>
                     <Route exact path="/" component={RandomLuiism} />
