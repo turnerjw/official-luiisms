@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import netlifyIdentity from "netlify-identity-widget";
 
 const User = styled.div`
     position: absolute;
@@ -27,10 +28,20 @@ const User = styled.div`
     }
 `;
 
+const getUser = () => {
+    const user = netlifyIdentity.currentUser();
+    console.log(user);
+    if (user) {
+        return user.user_metadata.full_name;
+    } else {
+        return "Login or Sign up";
+    }
+};
+
 function UserMenu() {
     return (
-        <User>
-            <p>Juggy</p>
+        <User onClick={() => netlifyIdentity.open()}>
+            <p>{getUser()}</p>
             <div>
                 <FontAwesomeIcon icon={faUserCircle} size="2x" />
             </div>
