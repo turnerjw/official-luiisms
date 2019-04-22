@@ -55,7 +55,7 @@ function Luiism({ luiism, usage, submittedBy, likes }) {
             <Usage>{usage}</Usage>
             <Quote>- Lui</Quote>
             <ActionArea>
-                <p>Submitted by {submittedBy}</p>
+                {submittedBy && <p>Submitted by {submittedBy.name}</p>}
                 <label htmlFor="">
                     {likes}
                     <button>+1</button>

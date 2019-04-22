@@ -4,11 +4,27 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import netlifyIdentity from "netlify-identity-widget";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 
 import RandomLuiism from "./RandomLuiism";
 import SubmitLuiism from "./SubmitLuiism";
 import Sidebar from "./Sidebar";
 import UserMenu from "./UserMenu";
+
+const client = new ApolloClient({
+    uri: "/.netlify/functions/apollo",
+    request: async operation => {
+        if (netlifyIdentity.currentUser()) {
+            const token = await netlifyIdentity.currentUser().jwt();
+            operation.setContext({
+                headers: {
+                    authorization: token ? `Bearer ${token}` : ""
+                }
+            });
+        }
+    }
+});
 
 const Header = styled.div`
     font-size: 60px;
@@ -47,17 +63,19 @@ function App() {
     netlifyIdentity.on("logout", () => setUserName(null));
 
     return (
-        <Router>
-            <Layout>
-                <Header>Luiisms</Header>
-                <UserMenu user={userName} />
-                <Sidebar />
-                <ContentArea>
-                    <Route exact path="/" component={RandomLuiism} />
-                    <Route exact path="/submit" component={SubmitLuiism} />
-                </ContentArea>
-            </Layout>
-        </Router>
+        <ApolloProvider client={client}>
+            <Router>
+                <Layout>
+                    <Header>Luiisms</Header>
+                    <UserMenu user={userName} />
+                    <Sidebar />
+                    <ContentArea>
+                        <Route exact path="/" component={RandomLuiism} />
+                        <Route exact path="/submit" component={SubmitLuiism} />
+                    </ContentArea>
+                </Layout>
+            </Router>
+        </ApolloProvider>
     );
 }
 
