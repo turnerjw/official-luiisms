@@ -30,11 +30,19 @@ const Layout = styled.div`
 `;
 
 function App() {
-    const [userName, setUserName] = useState(null);
+    // Get user on load
+    const [userName, setUserName] = useState(
+        netlifyIdentity.currentUser()
+            ? netlifyIdentity.currentUser().user_metadata.full_name
+            : null
+    );
 
     netlifyIdentity.on("login", () => {
-        const user = netlifyIdentity.currentUser();
-        setUserName(user.user_metadata.full_name);
+        setUserName(
+            netlifyIdentity.currentUser()
+                ? netlifyIdentity.currentUser().user_metadata.full_name
+                : null
+        );
     });
     netlifyIdentity.on("logout", () => setUserName(null));
 
