@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import netlifyIdentity from "netlify-identity-widget";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
+import LuiismById from "./LuiismById";
 import RandomLuiism from "./RandomLuiism";
 import SubmitLuiism from "./SubmitLuiism";
 import Sidebar from "./Sidebar";
@@ -72,12 +71,12 @@ function App() {
                     <ContentArea>
                         <Route exact path="/" component={RandomLuiism} />
                         <Route
-                            exact
                             path="/submit"
                             render={props => (
                                 <SubmitLuiism {...props} userName={userName} />
                             )}
                         />
+                        <Route path="/luiism/:id" component={LuiismById} />
                     </ContentArea>
                 </Layout>
             </Router>

@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-lambda");
 
 const typeDefs = gql`
     type Query {
-        luiism(luiismId: ID!): Luiism
+        luiism(id: ID!): Luiism
         randomLuiism: Luiism!
         hello: String!
         # allLuiisms: [Luiism!]!

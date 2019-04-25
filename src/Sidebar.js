@@ -34,8 +34,6 @@ const Nav = styled.nav`
     }
 `;
 
-const ListItem = styled.li``;
-
 function Sidebar() {
     return (
         <Nav>

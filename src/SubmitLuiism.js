@@ -90,14 +90,17 @@ const CREATE_LUIISM = gql`
     }
 `;
 
-function SubmitLuiism({ userName }) {
+function SubmitLuiism({ userName, history }) {
     const [ism, setIsm] = useState(null);
     const [usage, setUsage] = useState(null);
     return (
-        <Mutation mutation={CREATE_LUIISM}>
+        <Mutation
+            mutation={CREATE_LUIISM}
+            onCompleted={({ createLuiism }) => {
+                history.push(`/luiism/${createLuiism.id}`);
+            }}
+        >
             {(createLuiism, { data }) => {
-                console.log(data);
-
                 return (
                     <form
                         onSubmit={e => {
