@@ -7,7 +7,7 @@ const RANDOM_LUIISM = gql`
     {
         randomLuiism {
             id
-            value
+            ism
             usage
             submittedBy {
                 name
@@ -27,7 +27,7 @@ function RandomLuiism() {
                 } else {
                     return (
                         <LuiismDisplay
-                            luiism={data.randomLuiism.value}
+                            luiism={data.randomLuiism.ism}
                             usage={data.randomLuiism.usage}
                             likes="15"
                             submittedBy={data.randomLuiism.submittedBy}

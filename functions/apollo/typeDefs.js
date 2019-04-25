@@ -10,11 +10,7 @@ const typeDefs = gql`
 
     type Mutation {
         # createUser(name: String!): User
-        createLuiism(
-            value: String!
-            definition: String!
-            submittedById: ID
-        ): Luiism
+        createLuiism(ism: String!, usage: String!): Luiism
         # favouriteLuiism(user: ID!, luiism: ID!): Luiism
     }
 
@@ -27,7 +23,7 @@ const typeDefs = gql`
 
     type Luiism {
         id: ID!
-        value: String!
+        ism: String!
         usage: String!
         submittedBy: User
         favouritedBy: [User!]!

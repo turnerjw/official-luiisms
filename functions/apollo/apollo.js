@@ -3,7 +3,7 @@ const typeDefs = require("./typeDefs");
 
 const mocks = {
     Luiism: () => ({
-        value: "Misconskewed",
+        ism: "Misconskewed",
         usage: "Noooooo! I've been misconskewed!"
     }),
     User: () => ({

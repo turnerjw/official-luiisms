@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { gql } from "apollo-boost";
+import { Mutation } from "react-apollo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPeace } from "@fortawesome/free-solid-svg-icons";
 
@@ -75,33 +77,71 @@ const Button = styled.button`
     }
 `;
 
+const CREATE_LUIISM = gql`
+    mutation CreateLuiism($ism: String!, $usage: String!) {
+        createLuiism(ism: $ism, usage: $usage) {
+            id
+            ism
+            usage
+            submittedBy {
+                name
+            }
+        }
+    }
+`;
+
 function SubmitLuiism({ userName }) {
-    const [luiism, setLuiism] = useState("");
+    const [ism, setIsm] = useState(null);
+    const [usage, setUsage] = useState(null);
     return (
-        <form
-            onSubmit={e => {
-                e.preventDefault();
+        <Mutation mutation={CREATE_LUIISM}>
+            {(createLuiism, { data }) => {
+                console.log(data);
+
+                return (
+                    <form
+                        onSubmit={e => {
+                            e.preventDefault();
+                            createLuiism({ variables: { ism, usage } });
+                            setIsm(null);
+                            setUsage(null);
+                        }}
+                    >
+                        <Center>
+                            <Ism
+                                placeholder="Luiism"
+                                autoFocus={true}
+                                value={ism || ""}
+                                onChange={e => setIsm(e.target.value)}
+                            />
+                            <Usage
+                                placeholder="Usage"
+                                value={usage || ""}
+                                onChange={e => setUsage(e.target.value)}
+                            />
+                            <Quote>- Lui</Quote>
+                            <ActionArea>
+                                <Button type="submit">
+                                    <p>Submit</p>
+                                    <div>
+                                        <FontAwesomeIcon
+                                            icon={faHandPeace}
+                                            size="2x"
+                                        />
+                                    </div>
+                                </Button>
+                                {!userName && (
+                                    <p>
+                                        Log in or Sign up to be credited for
+                                        your discovery
+                                    </p>
+                                )}
+                            </ActionArea>
+                        </Center>
+                    </form>
+                );
             }}
-        >
-            <Center>
-                <Ism placeholder="Luiism" autoFocus={true} />
-                <Usage placeholder="Usage" />
-                <Quote>- Lui</Quote>
-                <ActionArea>
-                    <Button>
-                        <p>Submit</p>
-                        <div>
-                            <FontAwesomeIcon icon={faHandPeace} size="2x" />
-                        </div>
-                    </Button>
-                    {!userName && (
-                        <p>
-                            Log in or Sign up to be credited for your discovery
-                        </p>
-                    )}
-                </ActionArea>
-            </Center>
-        </form>
+        </Mutation>
     );
 }
 
