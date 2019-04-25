@@ -71,7 +71,13 @@ function App() {
                     <Sidebar />
                     <ContentArea>
                         <Route exact path="/" component={RandomLuiism} />
-                        <Route exact path="/submit" component={SubmitLuiism} />
+                        <Route
+                            exact
+                            path="/submit"
+                            render={props => (
+                                <SubmitLuiism {...props} userName={userName} />
+                            )}
+                        />
                     </ContentArea>
                 </Layout>
             </Router>

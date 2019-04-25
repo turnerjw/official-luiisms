@@ -14,6 +14,7 @@ const mocks = {
 const server = new ApolloServer({
     typeDefs,
     mocks,
+    mockEntireSchema: false,
     context: ({ context }) => ({
         context,
         clientContext: context.clientContext

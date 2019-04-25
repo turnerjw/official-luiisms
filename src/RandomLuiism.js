@@ -1,7 +1,7 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
-import Luiism from "./Luiism";
+import LuiismDisplay from "./LuiismDisplay";
 
 const RANDOM_LUIISM = gql`
     {
@@ -21,12 +21,12 @@ function RandomLuiism() {
         <Query query={RANDOM_LUIISM}>
             {({ data, loading, error }) => {
                 if (loading) {
-                    return <Luiism luiism="Loading..." />;
+                    return <LuiismDisplay luiism="Loading..." />;
                 } else if (error) {
                     return "Error";
                 } else {
                     return (
-                        <Luiism
+                        <LuiismDisplay
                             luiism={data.randomLuiism.value}
                             usage={data.randomLuiism.usage}
                             likes="15"

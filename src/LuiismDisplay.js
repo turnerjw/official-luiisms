@@ -48,7 +48,7 @@ const ActionArea = styled.div`
     }
 `;
 
-function Luiism({ luiism, usage, submittedBy, likes }) {
+function LuiismDisplay({ luiism, usage, submittedBy, likes }) {
     return (
         <Center>
             <Ism>"{luiism}"</Ism>
@@ -66,4 +66,4 @@ function Luiism({ luiism, usage, submittedBy, likes }) {
     );
 }
 
-export default Luiism;
+export default LuiismDisplay;
