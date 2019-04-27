@@ -159,12 +159,12 @@ export type LuiismOrderByInput =
   | "updatedAt_DESC";
 
 export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
   | "name_ASC"
   | "name_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "id_ASC"
+  | "id_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -341,20 +341,6 @@ export interface LuiismUpdateWithWhereUniqueWithoutFavouritedByInput {
 }
 
 export interface UserScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -389,20 +375,6 @@ export interface UserScalarWhereInput {
 }
 
 export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -542,7 +514,7 @@ export interface UserUpsertWithoutSubmissionsInput {
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
+  email: String;
 }>;
 
 export interface UserUpdateManyWithoutFavouritesInput {
@@ -648,7 +620,6 @@ export interface NodeNode {
 }
 
 export interface UserPreviousValues {
-  id: ID_Output;
   name: String;
   email: String;
 }
@@ -656,7 +627,6 @@ export interface UserPreviousValues {
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
 }
@@ -664,7 +634,6 @@ export interface UserPreviousValuesPromise
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
 }
@@ -737,13 +706,11 @@ export interface LuiismEdgeSubscription
 }
 
 export interface User {
-  id: ID_Output;
   name: String;
   email: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
   submissions: <T = FragmentableArray<Luiism>>(
@@ -773,7 +740,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   submissions: <T = Promise<AsyncIterator<LuiismSubscription>>>(

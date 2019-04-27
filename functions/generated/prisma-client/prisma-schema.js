@@ -334,7 +334,6 @@ type Subscription {
 }
 
 type User {
-  id: ID!
   name: String!
   email: String!
   submissions(where: LuiismWhereInput, orderBy: LuiismOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Luiism!]
@@ -382,12 +381,12 @@ type UserEdge {
 }
 
 enum UserOrderByInput {
-  id_ASC
-  id_DESC
   name_ASC
   name_DESC
   email_ASC
   email_DESC
+  id_ASC
+  id_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -395,26 +394,11 @@ enum UserOrderByInput {
 }
 
 type UserPreviousValues {
-  id: ID!
   name: String!
   email: String!
 }
 
 input UserScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
   name: String
   name_not: String
   name_in: [String!]
@@ -538,20 +522,6 @@ input UserUpsertWithWhereUniqueWithoutFavouritesInput {
 }
 
 input UserWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
   name: String
   name_not: String
   name_in: [String!]
@@ -592,7 +562,7 @@ input UserWhereInput {
 }
 
 input UserWhereUniqueInput {
-  id: ID
+  email: String
 }
 `
       }

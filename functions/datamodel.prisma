@@ -1,7 +1,6 @@
 type User {
-    id: ID! @unique
     name: String!
-    email: String!
+    email: String! @unique
     submissions: [Luiism!]! @relation(name: "SubmittedLuiisms")
     favourites: [Luiism!]! @relation(name: "FavouritedLuiisms")
 }
