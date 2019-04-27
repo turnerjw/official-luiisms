@@ -1,0 +1,15 @@
+type User {
+    id: ID! @unique
+    name: String!
+    email: String!
+    submissions: [Luiism!]! @relation(name: "SubmittedLuiisms")
+    favourites: [Luiism!]! @relation(name: "FavouritedLuiisms")
+}
+
+type Luiism {
+    id: ID! @unique
+    ism: String!
+    usage: String!
+    submittedBy: User @relation(name: "SubmittedLuiisms")
+    favouritedBy: [User!]! @relation(name: "FavouritedLuiisms")
+}
