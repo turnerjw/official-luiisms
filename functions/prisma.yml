@@ -7,4 +7,4 @@ generate:
     - generator: javascript-client
       output: ./apollo/generated/prisma-client/
     - generator: javascript-client
-      output: ./identity-login/generated/prisma-client/
+      output: ./identity-signup/generated/prisma-client/
