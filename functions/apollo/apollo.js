@@ -29,15 +29,24 @@ const resolvers = {
         // }
     },
     Mutation: {
-        createLuiism: async (parent, args, context, info) => {
-            console.log(args);
-            console.log(context.clientContext);
-
+        createLuiism: async (parent, args, context) => {
             try {
-                return await context.prisma.createLuiism({
-                    ism: args.ism,
-                    usage: args.usage
-                });
+                if (context.clientContext.user) {
+                    return await context.prisma.createLuiism({
+                        ism: args.ism,
+                        usage: args.usage,
+                        submittedBy: {
+                            connect: {
+                                email: context.clientContext.user.email
+                            }
+                        }
+                    });
+                } else {
+                    return await context.prisma.createLuiism({
+                        ism: args.ism,
+                        usage: args.usage
+                    });
+                }
             } catch (error) {
                 console.log(error);
                 return error;
