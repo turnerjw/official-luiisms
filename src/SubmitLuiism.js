@@ -52,7 +52,7 @@ const Button = styled.button`
     width: min-content;
     align-self: flex-end;
     margin-top: 15px;
-    padding: 10px 20px;
+    padding: 0 20px;
     display: flex;
     background: white;
     border-radius: 25px;

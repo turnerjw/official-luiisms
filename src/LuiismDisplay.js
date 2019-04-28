@@ -8,9 +8,13 @@ const Center = styled.div`
 `;
 
 const Ism = styled.div`
-    font-size: 8vw;
+    font-size: 10vw;
     font-style: italic;
     font-weight: bold;
+
+    @media screen and (min-width: 480px) {
+        font-size: 8vw;
+    }
 `;
 
 const Quote = styled.div`

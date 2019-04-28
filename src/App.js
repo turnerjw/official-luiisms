@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import netlifyIdentity from "netlify-identity-widget";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import { Normalize } from "styled-normalize";
 
 import LuiismById from "./LuiismById";
 import RandomLuiism from "./RandomLuiism";
@@ -34,8 +35,11 @@ const Header = styled.div`
 `;
 
 const ContentArea = styled.div`
-    grid-column: 3 / 11;
+    grid-column: 2/12;
     align-self: center;
+    @media screen and (min-width: 480px) {
+        grid-column: 3 / 11;
+    }
 `;
 
 const Layout = styled.div`
@@ -63,6 +67,7 @@ function App() {
 
     return (
         <ApolloProvider client={client}>
+            <Normalize />
             <Router>
                 <Layout>
                     <Header>Luiisms</Header>
