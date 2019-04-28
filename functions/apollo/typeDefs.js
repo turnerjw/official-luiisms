@@ -4,7 +4,7 @@ const typeDefs = gql`
     type Query {
         luiism(id: ID!): Luiism
         randomLuiism: Luiism!
-        hello: String!
+        # hello: String!
         # allLuiisms: [Luiism!]!
     }
 

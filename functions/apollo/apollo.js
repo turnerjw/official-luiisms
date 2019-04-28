@@ -14,21 +14,41 @@ const mocks = {
 
 const resolvers = {
     Query: {
-        hello: (parent, args, context, info) => {
-            console.log(context.clientContext);
-            return "Hello World";
-        }
+        // hello: async (parent, args, context, info) => {
+        //     try {
+        //         const { ism } = await context.prisma.createLuiism({
+        //             ism: "misconskewed",
+        //             usage: "nooo!"
+        //         });
+        //         console.log(ism);
+        //         return ism;
+        //     } catch (error) {
+        //         console.log(error);
+        //         return "error";
+        //     }
+        // }
     },
     Mutation: {
-        createLuiism: (parent, args, context, info) => {
+        createLuiism: async (parent, args, context, info) => {
+            console.log(args);
             console.log(context.clientContext);
-            return "Hello World";
+
+            try {
+                return await context.prisma.createLuiism({
+                    ism: args.ism,
+                    usage: args.usage
+                });
+            } catch (error) {
+                console.log(error);
+                return error;
+            }
         }
     }
 };
 
 const server = new ApolloServer({
     typeDefs,
+    resolvers,
     mocks,
     mockEntireSchema: false,
     context: ({ context }) => ({
