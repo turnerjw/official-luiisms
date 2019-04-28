@@ -1,6 +1,6 @@
 const { ApolloServer } = require("apollo-server-lambda");
 const typeDefs = require("./typeDefs");
-const { prisma } = require("../generated/prisma-client");
+const { prisma } = require("./generated/prisma-client");
 
 const mocks = {
     Luiism: () => ({

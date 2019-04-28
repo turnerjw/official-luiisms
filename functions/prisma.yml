@@ -2,5 +2,7 @@ endpoint: https://luiisms-2050169703.herokuapp.com/luiisms/dev
 datamodel: datamodel.prisma
 
 generate:
-  - generator: javascript-client
-    output: ./generated/prisma-client/
+    - generator: javascript-client
+      output: ./apollo/generated/prisma-client/
+    - generator: javascript-client
+      output: ./identity-login/generated/prisma-client/
