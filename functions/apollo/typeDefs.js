@@ -14,7 +14,6 @@ const typeDefs = gql`
     }
 
     type User {
-        id: ID!
         name: String!
         submissions: [Luiism!]!
         favourites: [Luiism!]!
