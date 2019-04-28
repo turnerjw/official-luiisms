@@ -1,6 +1,8 @@
 endpoint: https://luiisms-2050169703.herokuapp.com/luiisms/dev
 datamodel: datamodel.prisma
 
+secret: ${env:PRISMA_SECRET}
+
 generate:
     - generator: javascript-client
       output: ./apollo/generated/prisma-client/
