@@ -12,21 +12,29 @@ const Center = styled.div`
 `;
 
 const Ism = styled.input`
-    font-size: 8vw;
+    font-size: 10vw;
     font-style: italic;
     font-weight: bold;
     width: 100%;
     text-align: center;
     border: none;
+
+    @media screen and (min-width: 480px) {
+        font-size: 8vw;
+    }
 `;
 
 const Usage = styled.input`
-    font-size: 2.5vw;
+    font-size: 3.5vw;
     color: grey;
     width: 100%;
     border: none;
     text-align: center;
     margin-top: 5px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 2.5vw;
+    }
 `;
 
 const Quote = styled.div`

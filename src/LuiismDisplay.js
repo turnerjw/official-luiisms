@@ -24,8 +24,12 @@ const Quote = styled.div`
 `;
 
 const Usage = styled.div`
-    font-size: 2.5vw;
+    font-size: 3.5vw;
     color: grey;
+
+    @media screen and (min-width: 480px) {
+        font-size: 2.5vw;
+    }
 `;
 
 const ActionArea = styled.div`
