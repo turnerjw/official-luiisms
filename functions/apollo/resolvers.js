@@ -1,6 +1,8 @@
 const resolvers = {
     Query: {
         luiism: async (parent, args, context) => {
+            console.log("Getting Luiism by ID");
+
             try {
                 return await context.prisma.luiism({ id: args.id });
             } catch (error) {
@@ -9,11 +11,12 @@ const resolvers = {
             }
         },
         randomLuiism: async (parent, args, context) => {
+            console.log("Getting Random Luiism");
+
             try {
                 const {
                     count
                 } = await context.prisma.luiismsConnection().aggregate();
-                console.log(count);
                 const randomIndex = Math.floor(Math.random() * count);
 
                 return (luiism = (await context.prisma.luiisms({
@@ -28,6 +31,8 @@ const resolvers = {
     },
     Mutation: {
         createLuiism: async (parent, args, context) => {
+            console.log("Creating Luiism");
+
             try {
                 if (context.clientContext.user) {
                     return await context.prisma.createLuiism({
